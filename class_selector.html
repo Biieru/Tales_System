@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seletor de Classes RPG</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #1a1a1a;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .card-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            border-radius: 15px;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 5s ease;
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .card-front {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card-back {
+            background: rgba(0, 0, 0, 0.5);
+            transform: rotateY(180deg);
+            color: white;
+        }
+
+        /* Estilos de raridade aplicados à .card e suas faces */
+
+        /* Comuns - Brilho Silver */
+        .card.uncommon .card-front, .card.uncommon .card-back {
+            border: 2px solid #c0c0c0;
+            box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+        }
+
+        /* Raras - Brilho Blue */
+        .card.rare .card-front, .card.rare .card-back {
+            border: 2px solid #007bff;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Épicas - Brilho Roxo */
+        .card.epic .card-front, .card.epic .card-back {
+            border: 2px solid #800080;
+            box-shadow: 0 0 25px rgba(128, 0, 128, 0.5);
+        }
+
+        /* Lendárias - Brilho Dourado */
+        .card.legendary .card-front, .card.legendary .card-back {
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Únicas - Brilho Avermelhado */
+        .card.unique .card-front, .card.unique .card-back {
+            border: 2px solid #dc3545;
+            box-shadow: 0 0 35px rgba(220, 53, 69, 0.7);
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-description {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .rarity-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        /* Indicadores de raridade */
+        .uncommon .rarity-indicator { background: #c0c0c0; } /* Comuns */
+        .rare .rarity-indicator { background: #007bff; } /* Raras */
+        .epic .rarity-indicator { background: #800080; } /* Épicas */
+        .legendary .rarity-indicator { background: #ffd700; } /* Lendárias */
+        .unique .rarity-indicator { background: #dc3545; } /* Únicas */
+
+    </style>
+</head>
+<body>
+    <div class="card-container" id="cardContainer">
+        <!-- As cartas serão geradas aqui pelo JavaScript -->
+    </div>
+
+    <script>
+        const classes = [
+            // Comuns (Brilho Silver) - Mapeado para 'uncommon'
+            { name: 'Guerreiro', description: 'Mestre no combate com armas e armaduras pesadas.', rarity: 'uncommon' },
+            { name: 'Mago', description: 'Conjurador de feitiços arcanos.', rarity: 'uncommon' },
+            { name: 'Arqueiro', description: 'Especialista em combate à distância com arco e flecha.', rarity: 'uncommon' },
+            { name: 'Clérigo', description: 'Curandeiro e protetor abençoado por divindades.', rarity: 'uncommon' },
+            { name: 'Duelista', description: 'Combatente ágil focado em duelos honrados.', rarity: 'uncommon' },
+            { name: 'Ladrão', description: 'Mestre em furtividade, arrombamento e golpes pelas sombras.', rarity: 'uncommon' },
+            { name: 'Feiticeiro', description: 'Herdeiro de poderes mágicos inatos.', rarity: 'uncommon' },
+            { name: 'Bárbaro', description: 'Guerreiro feroz que canaliza a raiva em combate.', rarity: 'uncommon' },
+            { name: 'Druida', description: 'Protetor da natureza com a capacidade de se transformar.', rarity: 'uncommon' },
+            { name: 'Bardo', description: 'Aventureiro carismático que usa música para inspirar e encantar.', rarity: 'uncommon' },
+            { name: 'Monge', description: 'Praticante de artes marciais e disciplina espiritual.', rarity: 'uncommon' },
+            { name: 'Caçador', description: 'Rastreador implacável, especialista em presas.', rarity: 'uncommon' },
+            { name: 'Mercenário', description: 'Combatente experiente que luta por dinheiro.', rarity: 'uncommon' },
+            { name: 'Templário', description: 'Guerreiro sagrado dedicado a uma causa nobre.', rarity: 'uncommon' },
+            { name: 'Sombra', description: 'Andarilho silencioso que se move nas trevas.', rarity: 'uncommon' },
+            { name: 'Artista Marcial', description: 'Mestre em combate desarmado e técnicas de luta.', rarity: 'uncommon' },
+
+            // Raras (Brilho Blue) - Mapeado para 'rare'
+            { name: 'Cavaleiro', description: 'Nobre guerreiro montado, protetor dos fracos.', rarity: 'rare' },
+            { name: 'Alquimista', description: 'Criador de poções, elixires e mutagênicos.', rarity: 'rare' },
+            { name: 'Necromante', description: 'Dominador das artes da morte e dos mortos-vivos.', rarity: 'rare' },
+            { name: 'Paladino', description: 'Guerreiro sagrado movido pela fé e justiça.', rarity: 'rare' },
+            { name: 'Espadachim', description: 'Mestre da esgrima e combate refinado.', rarity: 'rare' },
+            { name: 'Pirata', description: 'Aventureiro dos mares, saqueador destemido.', rarity: 'rare' },
+            { name: 'Artilheiro', description: 'Especialista em armas de pólvora e explosivos.', rarity: 'rare' },
+            { name: 'Sacerdote', description: 'Servo devoto de uma divindade, concede bênçãos e cura.', rarity: 'rare' },
+            { name: 'Invocador', description: 'Conjurador que traz criaturas de outros planos para lutar ao seu lado.', rarity: 'rare' },
+            { name: 'Assassino', description: 'Mestre em eliminar alvos com precisão e discrição.', rarity: 'rare' },
+            { name: 'Padre', description: 'Líder espiritual e conselheiro, com poderes divinos menores.', rarity: 'rare' },
+            { name: 'Matador', description: 'Caçador implacável focado em monstros e criaturas perigosas.', rarity: 'rare' },
+            { name: 'Gladiador', description: 'Lutador de arena, busca a glória e o entretenimento da multidão.', rarity: 'rare' },
+            { name: 'Campeão', description: 'Herói renomado, inspiração para aliados.', rarity: 'rare' },
+            { name: 'Sabotador', description: 'Especialista em armadilhas e desativar defesas.', rarity: 'rare' },
+            { name: 'Juggernaut', description: 'Guerreiro imparável, resiste a qualquer ataque.', rarity: 'rare' },
+            { name: 'Chefão', description: 'Líder tático e estrategista no campo de batalha.', rarity: 'rare' },
+            { name: 'Ocultista', description: 'Explorador de conhecimentos proibidos e magias sombrias.', rarity: 'rare' },
+            { name: 'Elementalista', description: 'Dominador dos poderes dos elementos naturais.', rarity: 'rare' },
+            { name: 'Hierofante', description: 'Sábio e líder religioso, canaliza poder divino.', rarity: 'rare' },
+            { name: 'Explorador', description: 'Desbravador de terras desconhecidas e perigosas.', rarity: 'rare' },
+
+            // Épicas (Brilho Roxo) - Mapeado para 'epic'
+            { name: 'Marionetista', description: 'Controlador de seres através de linhas etéreas.', rarity: 'epic' },
+            { name: 'Guardião Celestial', description: 'Protetor alado com poderes divinos.', rarity: 'epic' },
+            { name: 'Cavaleiro Dimensional', description: 'Viajante entre dimensões, mestre em teletransporte.', rarity: 'epic' },
+            { name: 'Domador de Monstros', description: 'Captura e controla feras e criaturas.', rarity: 'epic' },
+            { name: 'Engenheiro Arcano', description: 'Construtor de dispositivos movidos a magia.', rarity: 'epic' },
+            { name: 'Caçador de Dragões', description: 'Especialista em rastrear e derrotar dragões.', rarity: 'epic' },
+            { name: 'Artífice', description: 'Criador de itens mágicos e tecnológicos.', rarity: 'epic' },
+            { name: 'Tecelão de Destinos', description: 'Manipula os fios do destino para seu benefício.', rarity: 'epic' },
+            { name: 'Mestre das Runas', description: 'Grava e ativa símbolos mágicos poderosos.', rarity: 'epic' },
+            { name: 'Cavaleiro Elemental', description: 'Guerreiro imbuído com o poder dos elementos.', rarity: 'epic' },
+            { name: 'Aventureiro', description: 'Desafiador de masmorras e explorador de tesouros.', rarity: 'epic' },
+            { name: 'Enganador', description: 'Mestre em ilusões, disfarces e trapaças.', rarity: 'epic' },
+            { name: 'Mestre de Cerco', description: 'Especialista em destruir fortificações e defesas.', rarity: 'epic' },
+            { name: 'Ferreiro de Magia', description: 'Forja armas e armaduras com propriedades mágicas.', rarity: 'epic' },
+            { name: 'Mestre dos Elementos', description: 'Controle supremo sobre múltiplas forças elementais.', rarity: 'epic' },
+            { name: 'Portador do Vazio', description: 'Canaliza a energia destrutiva do vazio.', rarity: 'epic' },
+            { name: 'Senhor do Caos', description: 'Semeeia a desordem e usa magias imprevisíveis.', rarity: 'epic' },
+            { name: 'Guardião do Éter', description: 'Protetor das fronteiras entre realidades.', rarity: 'epic' },
+            { name: 'Cavaleiro da Luz', description: 'Guerreiro sagrado que bane as trevas com pura luz.', rarity: 'epic' },
+
+            // Lendárias (Brilho Dourado) - Mapeado para 'legendary'
+            { name: 'Herdeiro de Relíquias Antigas', description: 'Portador de artefatos de imenso poder.', rarity: 'legendary' },
+            { name: 'Ilusionista', description: 'Criador de realidades falsas e miragens.', rarity: 'legendary' },
+            { name: 'Manipulador do Tempo', description: 'Controla o fluxo temporal em pequena escala.', rarity: 'legendary' },
+            { name: 'Fazendeiro', description: 'Cultivador talentoso, nutre a terra e a vida.', rarity: 'legendary' },
+            { name: 'Ferreiro', description: 'Artesão mestre, cria equipamentos de qualidade excepcional.', rarity: 'legendary' },
+            { name: 'Navegador', description: 'Desbravador de rotas marítimas e celestes.', rarity: 'legendary' },
+            { name: 'Cozinheiro', description: 'Mestre culinário, suas refeições restauram corpo e alma.', rarity: 'legendary' },
+            { name: 'Herborista', description: 'Conhecedor de plantas medicinais e venenosas.', rarity: 'legendary' },
+            { name: 'Comerciante', description: 'Negociador astuto, encontra valor onde outros não veem.', rarity: 'legendary' },
+            { name: 'Mensageiro', description: 'Entregador rápido e confiável, conhece todos os caminhos.', rarity: 'legendary' },
+            { name: 'Escudeiro', description: 'Assistente leal de um cavaleiro ou herói.', rarity: 'legendary' },
+            { name: 'Pescador', description: 'Mestre em capturar criaturas aquáticas, de peixes a monstros marinhos.', rarity: 'legendary' },
+            { name: 'Arauto da Morte', description: 'Presságio sombrio, anuncia o fim.', rarity: 'legendary' },
+            { name: 'Lorde dos Pesadelos', description: 'Manipula medos e sonhos, causa terror.', rarity: 'legendary' },
+            { name: 'Mestre da Gravidade', description: 'Altera a força gravitacional ao seu redor.', rarity: 'legendary' },
+            { name: 'Avatar de Constelações', description: 'Canaliza o poder das estrelas e constelações.', rarity: 'legendary' },
+            { name: 'Guardião das Estrelas', description: 'Protetor dos segredos cósmicos e da luz estelar.', rarity: 'legendary' },
+
+            // Únicas (Brilho Avermelhado) - Mapeado para 'unique'
+            { name: 'Mestre das Sombras', description: 'Controla as sombras para se mover e atacar.', rarity: 'unique' },
+            { name: 'Colecionador de Habilidades', description: 'Absorve e replica as habilidades de outros.', rarity: 'unique' },
+            { name: 'Contratante', description: 'Faz pactos com seres poderosos em troca de favores.', rarity: 'unique' },
+            { name: 'Bibliotecário', description: 'Guardião do conhecimento proibido e antigo.', rarity: 'unique' },
+        ];
+
+        function createCard(classData) {
+            const card = document.createElement('div');
+            card.className = `card ${classData.rarity}`;
+            card.addEventListener('click', () => {
+                if (card.classList.contains('is-flipped') || card.style.opacity === '0') {
+                    return;
+                }
+
+                card.classList.toggle('is-flipped');
+
+                const allCards = document.getElementById('cardContainer').getElementsByClassName('card');
+                Array.from(allCards).forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.style.opacity = '0';
+                        setTimeout(() => {
+                           otherCard.style.display = 'none';
+                        }, 5000);
+                    }
+                });
+            });
+
+            const cardInner = document.createElement('div');
+            cardInner.className = 'card-inner';
+
+            const cardFront = document.createElement('div');
+            cardFront.className = 'card-front';
+
+            const cardBack = document.createElement('div');
+            cardBack.className = 'card-back';
+            
+            const rarityIndicator = document.createElement('div');
+            rarityIndicator.className = 'rarity-indicator';
+            
+            const title = document.createElement('div');
+            title.className = 'card-title';
+            title.textContent = classData.name;
+            
+            const description = document.createElement('div');
+            description.className = 'card-description';
+            description.textContent = classData.description;
+            
+            cardBack.appendChild(rarityIndicator);
+            cardBack.appendChild(title);
+            cardBack.appendChild(description);
+
+            cardInner.appendChild(cardFront);
+            cardInner.appendChild(cardBack);
+
+            card.appendChild(cardInner);
+            
+            return card;
+        }
+
+        function animateCards() {
+            const container = document.getElementById('cardContainer');
+            const cards = container.getElementsByClassName('card');
+            
+            Array.from(cards).forEach(card => {
+                const x = Math.random() * (window.innerWidth - 240);
+                const y = Math.random() * (window.innerHeight - 340);
+                
+                card.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        }
+
+        function selectRandomClasses(allClasses, numberOfCards) {
+            const rarityWeights = {
+                'uncommon': 20,
+                'rare': 12,
+                'epic': 6,
+                'legendary': 2,
+                'unique': 1
+            };
+
+            const weightedClasses = [];
+            allClasses.forEach(classData => {
+                const weight = rarityWeights[classData.rarity] || 0;
+                for (let i = 0; i < weight; i++) {
+                    weightedClasses.push(classData);
+                }
+            });
+
+            if (weightedClasses.length < numberOfCards) {
+                console.warn("Não há classes ponderadas suficientes para selecionar 10 cartas. Selecionando todas as classes ponderadas disponíveis.");
+                for (let i = weightedClasses.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [weightedClasses[i], weightedClasses[j]] = [weightedClasses[j], weightedClasses[i]];
+                }
+                return weightedClasses.slice(0, weightedClasses.length);
+            }
+
+            const selectedClasses = [];
+            for (let i = 0; i < numberOfCards; i++) {
+                const randomIndex = Math.floor(Math.random() * weightedClasses.length);
+                selectedClasses.push(weightedClasses[randomIndex]);
+            }
+
+            return selectedClasses;
+        }
+
+        function initializeCards() {
+            const container = document.getElementById('cardContainer');
+            container.innerHTML = '';
+
+            const selectedClasses = selectRandomClasses(classes, 15);
+
+            selectedClasses.forEach(classData => {
+                const card = createCard(classData);
+                container.appendChild(card);
+            });
+            animateCards();
+        }
+
+        window.addEventListener('load', initializeCards);
+    </script>
+</body>
+</html> 
