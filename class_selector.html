@@ -148,70 +148,69 @@
 
     <script>
         const classes = [
-            // Comuns (Brilho Silver) - Mapeado para 'uncommon'
-            { name: 'Guerreiro', description: 'Mestre no combate com armas e armaduras pesadas, pode virar um bárbaro ou cavaleiro.', rarity: 'uncommon' },
-            { name: 'Mago', description: 'Conjurador de feitiços arcanos, pode se tornar um necromante, alquimista ou arquimago.', rarity: 'uncommon' },
-            { name: 'Arqueiro', description: 'Especialista em combate à distância com arco e flecha, podendo se tornar um caçador ou mercenário.', rarity: 'uncommon' },
-            { name: 'Clérigo', description: 'Curandeiro e protetor abençoado por divindades, podendo se tornar um templário, paladino ou sacerdote.', rarity: 'uncommon' },
-            { name: 'Ladrão', description: 'Mestre em furtividade, arrombamento e golpes pelas sombras, podendo se tornar um sombra, pirata ou assassino.', rarity: 'uncommon' },
-            { name: 'Feiticeiro', description: 'Herdeiro de poderes mágicos inatos, podendo se tornar um invocador ou ocultista.', rarity: 'uncommon' },
-            { name: 'Druida', description: 'Protetor da natureza com a capacidade de se transformar, pode se tornar um shaman.', rarity: 'uncommon' },
-            { name: 'Bardo', description: 'Aventureiro carismático que usa música para inspirar e encantar.', rarity: 'uncommon' },
-            { name: 'Monge', description: 'Praticante de artes marciais e disciplina espiritual, podendo se tornar um poderoso artista marcial.', rarity: 'uncommon' },
+            // Comuns (44%) - Mapeado para 'uncommon'
+            { name: 'Guerreiro', description: 'Combatente versátil, especialista em armas e armaduras.', rarity: 'uncommon' },
+            { name: 'Mago', description: 'Conjurador arcano, domina feitiços e conhecimento mágico.', rarity: 'uncommon' },
+            { name: 'Caçador', description: 'Rastreador e sobrevivente, eficiente em combate e exploração.', rarity: 'uncommon' },
+            { name: 'Clérigo', description: 'Devoto com poderes divinos, cura e protege aliados.', rarity: 'uncommon' },
+            { name: 'Ladrão', description: 'Furtivo e habilidoso, especialista em agilidade e truques.', rarity: 'uncommon' },
+            { name: 'Feiticeiro', description: 'Usuário de magia inata, canaliza poder bruto e instintivo.', rarity: 'uncommon' },
+            { name: 'Druida', description: 'Guardião da natureza, usa magia primal e adaptação.', rarity: 'uncommon' },
+            { name: 'Bardo', description: 'Artista carismático, inspira e manipula com música e palavras.', rarity: 'uncommon' },
+            { name: 'Monge', description: 'Disciplina e artes marciais, domina corpo e mente.', rarity: 'uncommon' },
 
-            // Raras (Brilho Blue) - Mapeado para 'rare'
-            { name: 'Espadachim', description: 'Mestre da esgrima e combate refinado.', rarity: 'rare' },
-            { name: 'Pirata', description: 'Aventureiro dos mares, saqueador destemido.', rarity: 'rare' },
-            { name: 'Atirador', description: 'Usuário de armas de fogo, podendo se tornar um Artilheiro.', rarity: 'rare' },
-            { name: 'Padre', description: 'Líder espiritual e conselheiro, com poderes divinos menores, podendo virar um Hierofante, Bispo ou Papa.', rarity: 'rare' },
-            { name: 'Gladiador', description: 'Lutador de arena, busca a glória e o entretenimento da multidão.', rarity: 'rare' },
-            { name: 'Elementalista', description: 'Dominador dos poderes dos elementos naturais.', rarity: 'rare' },
+            // Raras (28%) - Mapeado para 'rare'
+            { name: 'Espadachim', description: 'Especialista em lâminas, técnica refinada e precisão.', rarity: 'rare' },
+            { name: 'Atirador', description: 'Perito em ataques à distância, mira e disparos certeiros.', rarity: 'rare' },
+            { name: 'Padre', description: 'Líder espiritual, guia e fortalece com fé e ritos.', rarity: 'rare' },
+            { name: 'Gladiador', description: 'Lutador de arena, resistência e presença intimidadora.', rarity: 'rare' },
+            { name: 'Elementalista', description: 'Manipulador dos elementos, conjura forças naturais.', rarity: 'rare' },
 
-            // Épicas (Brilho Roxo) - Mapeado para 'epic'
-            { name: 'Marionetista', description: 'Controlador de seres através de linhas etéreas.', rarity: 'epic' },
-            { name: 'Guardião Celestial', description: 'Protetor alado com poderes divinos.', rarity: 'epic' },
-            { name: 'Cavaleiro Dimensional', description: 'Viajante entre dimensões, mestre em teletransporte.', rarity: 'epic' },
-            { name: 'Domador de Monstros', description: 'Captura e controla feras e criaturas.', rarity: 'epic' },
-            { name: 'Engenheiro Arcano', description: 'Construtor de dispositivos movidos a magia.', rarity: 'epic' },
-            { name: 'Caçador de Dragões', description: 'Especialista em rastrear e derrotar dragões.', rarity: 'epic' },
-            { name: 'Artífice', description: 'Criador de itens mágicos e tecnológicos.', rarity: 'epic' },
-            { name: 'Tecelão de Destinos', description: 'Manipula os fios do destino para seu benefício.', rarity: 'epic' },
-            { name: 'Mestre das Runas', description: 'Grava e ativa símbolos mágicos poderosos.', rarity: 'epic' },
-            { name: 'Cavaleiro Elemental', description: 'Guerreiro imbuído com o poder dos elementos.', rarity: 'epic' },
-            { name: 'Aventureiro', description: 'Desafiador de masmorras e explorador de tesouros.', rarity: 'epic' },
-            { name: 'Enganador', description: 'Mestre em ilusões, disfarces e trapaças.', rarity: 'epic' },
-            { name: 'Mestre de Cerco', description: 'Especialista em destruir fortificações e defesas.', rarity: 'epic' },
-            { name: 'Ferreiro de Magia', description: 'Forja armas e armaduras com propriedades mágicas.', rarity: 'epic' },
-            { name: 'Mestre dos Elementos', description: 'Controle supremo sobre múltiplas forças elementais.', rarity: 'epic' },
-            { name: 'Portador do Vazio', description: 'Canaliza a energia destrutiva do vazio.', rarity: 'epic' },
-            { name: 'Senhor do Caos', description: 'Semeeia a desordem e usa magias imprevisíveis.', rarity: 'epic' },
-            { name: 'Guardião do Éter', description: 'Protetor das fronteiras entre realidades.', rarity: 'epic' },
-            { name: 'Cavaleiro da Luz', description: 'Guerreiro sagrado que bane as trevas com pura luz.', rarity: 'epic' },
+            // Épicas (14%) - Mapeado para 'epic'
+            { name: 'Marionetista', description: 'Controla movimentos e decisões com influência sutil.', rarity: 'epic' },
+            { name: 'Guardião Celestial', description: 'Protetor com aura divina e dever sagrado.', rarity: 'epic' },
+            { name: 'Cavaleiro Dimensional', description: 'Dobra espaço e atravessa limites entre lugares.', rarity: 'epic' },
+            { name: 'Domador de Monstros', description: 'Especialista em capturar e comandar criaturas.', rarity: 'epic' },
+            { name: 'Engenheiro Arcano', description: 'Combina magia e engenharia em criações únicas.', rarity: 'epic' },
+            { name: 'Caçador de Dragões', description: 'Rastreador e executor de feras dracônicas.', rarity: 'epic' },
+            { name: 'Artífice', description: 'Constrói e aprimora artefatos mágicos complexos.', rarity: 'epic' },
+            { name: 'Tecelão de Destinos', description: 'Interfere em probabilidades e caminhos futuros.', rarity: 'epic' },
+            { name: 'Mestre das Runas', description: 'Domina inscrições rúnicas e seus efeitos.', rarity: 'epic' },
+            { name: 'Cavaleiro Elemental', description: 'Guerreiro imbuído com forças elementais.', rarity: 'epic' },
+            { name: 'Aventureiro', description: 'Explorador lendário, adaptável e experiente.', rarity: 'epic' },
+            { name: 'Mestre de Cerco', description: 'Especialista em táticas e destruição de fortificações.', rarity: 'epic' },
+            { name: 'Ferreiro de Magia', description: 'Forja equipamentos com propriedades místicas.', rarity: 'epic' },
+            { name: 'Mestre dos Elementos', description: 'Controle avançado de múltiplas forças naturais.', rarity: 'epic' },
+            { name: 'Portador do Vazio', description: 'Canaliza energia do vazio: risco e poder extremo.', rarity: 'epic' },
+            { name: 'Senhor do Caos', description: 'Conjura desordem e efeitos imprevisíveis.', rarity: 'epic' },
+            { name: 'Guardião do Éter', description: 'Vigia fronteiras arcanas e planos sutis.', rarity: 'epic' },
+            { name: 'Cavaleiro da Luz', description: 'Guerreiro sagrado, purifica trevas com luz.', rarity: 'epic' },
 
-            // Lendárias (Brilho Dourado) - Mapeado para 'legendary'
-            { name: 'Herdeiro de Relíquias Antigas', description: 'Portador de artefatos de imenso poder.', rarity: 'legendary' },
-            { name: 'Ilusionista', description: 'Criador de realidades falsas e miragens.', rarity: 'legendary' },
-            { name: 'Manipulador do Tempo', description: 'Controla o fluxo temporal em pequena escala.', rarity: 'legendary' },
-            { name: 'Fazendeiro', description: 'Cultivador talentoso, nutre a terra e a vida.', rarity: 'legendary' },
-            { name: 'Ferreiro', description: 'Artesão mestre, cria equipamentos de qualidade excepcional.', rarity: 'legendary' },
-            { name: 'Navegador', description: 'Desbravador de rotas marítimas e celestes.', rarity: 'legendary' },
-            { name: 'Cozinheiro', description: 'Mestre culinário, suas refeições restauram corpo e alma.', rarity: 'legendary' },
-            { name: 'Herborista', description: 'Conhecedor de plantas medicinais e venenosas.', rarity: 'legendary' },
-            { name: 'Comerciante', description: 'Negociador astuto, encontra valor onde outros não veem.', rarity: 'legendary' },
-            { name: 'Mensageiro', description: 'Entregador rápido e confiável, conhece todos os caminhos.', rarity: 'legendary' },
-            { name: 'Escudeiro', description: 'Assistente leal de um cavaleiro ou herói.', rarity: 'legendary' },
-            { name: 'Pescador', description: 'Mestre em capturar criaturas aquáticas, de peixes a monstros marinhos.', rarity: 'legendary' },
-            { name: 'Arauto da Morte', description: 'Presságio sombrio, anuncia o fim.', rarity: 'legendary' },
-            { name: 'Lorde dos Pesadelos', description: 'Manipula medos e sonhos, causa terror.', rarity: 'legendary' },
-            { name: 'Mestre da Gravidade', description: 'Altera a força gravitacional ao seu redor.', rarity: 'legendary' },
-            { name: 'Avatar de Constelações', description: 'Canaliza o poder das estrelas e constelações.', rarity: 'legendary' },
-            { name: 'Guardião das Estrelas', description: 'Protetor dos segredos cósmicos e da luz estelar.', rarity: 'legendary' },
+            // Lendárias (9%) - Mapeado para 'legendary'
+            { name: 'Herdeiro de Relíquias Antigas', description: 'Portador de artefatos ancestrais e poder raro.', rarity: 'legendary' },
+            { name: 'Ilusionista', description: 'Molda percepções e cria realidades falsas.', rarity: 'legendary' },
+            { name: 'Manipulador do Tempo', description: 'Interfere no fluxo temporal em janelas precisas.', rarity: 'legendary' },
+            { name: 'Fazendeiro', description: 'Mestre da terra e colheitas, prosperidade e sustento.', rarity: 'legendary' },
+            { name: 'Ferreiro', description: 'Artesão excepcional, cria e aprimora equipamentos.', rarity: 'legendary' },
+            { name: 'Navegador', description: 'Traça rotas e guia jornadas por mar e céu.', rarity: 'legendary' },
+            { name: 'Cozinheiro', description: 'Culinária de alto nível, efeitos únicos em refeições.', rarity: 'legendary' },
+            { name: 'Herborista', description: 'Especialista em ervas, curas, toxinas e extratos.', rarity: 'legendary' },
+            { name: 'Comerciante', description: 'Negociador lendário, influência e recursos vastos.', rarity: 'legendary' },
+            { name: 'Mensageiro', description: 'Rapidez e rotas secretas; entrega o impossível.', rarity: 'legendary' },
+            { name: 'Escudeiro', description: 'Apoio leal, cresce em bravura e proteção.', rarity: 'legendary' },
+            { name: 'Pescador', description: 'Perito em rios e mares, captura o extraordinário.', rarity: 'legendary' },
+            { name: 'Arauto da Morte', description: 'Presságio sombrio e poder ligado ao fim.', rarity: 'legendary' },
+            { name: 'Lorde dos Pesadelos', description: 'Domina medos e sonhos, impõe terror.', rarity: 'legendary' },
+            { name: 'Mestre da Gravidade', description: 'Altera forças gravitacionais ao seu redor.', rarity: 'legendary' },
+            { name: 'Avatar de Constelações', description: 'Canaliza poder de estrelas e padrões celestes.', rarity: 'legendary' },
+            { name: 'Guardião das Estrelas', description: 'Protege segredos cósmicos e luz estelar.', rarity: 'legendary' },
 
-            // Únicas (Brilho Avermelhado) - Mapeado para 'unique'
-            { name: 'Mestre das Sombras', description: 'Controla as sombras para se mover e atacar.', rarity: 'unique' },
-            { name: 'Colecionador de Habilidades', description: 'Absorve e replica as habilidades de outros.', rarity: 'unique' },
-            { name: 'Contratante', description: 'Faz pactos com seres poderosos em troca de favores.', rarity: 'unique' },
-            { name: 'Bibliotecário', description: 'Guardião do conhecimento proibido e antigo.', rarity: 'unique' },
+            // Únicas (5%) - Mapeado para 'unique'
+            { name: 'Regressor', description: 'Retorna e reescreve escolhas com conhecimento do futuro.', rarity: 'unique' },
+            { name: 'Mestre das Sombras', description: 'Controla sombras para se mover, ocultar e atacar.', rarity: 'unique' },
+            { name: 'Colecionador de Habilidades', description: 'Adquire e replica técnicas raras de outros.', rarity: 'unique' },
+            { name: 'Contratante', description: 'Firma pactos com entidades em troca de poder.', rarity: 'unique' },
+            { name: 'Bibliotecário', description: 'Guardião de conhecimento antigo e proibido.', rarity: 'unique' },
         ];
 
         function createCard(classData) {
@@ -280,38 +279,66 @@
         }
 
         function selectRandomClasses(allClasses, numberOfCards) {
-            const rarityWeights = {
-                'uncommon': 20,
-                'rare': 12,
-                'epic': 6,
-                'legendary': 2,
-                'unique': 1
-            };
+            // Chances exatas por raridade:
+            // Comuns 44%, Raras 28%, Épicas 14%, Lendárias 9%, Únicas 5%
+            const rarityChances = [
+                { rarity: 'uncommon', chance: 44 },
+                { rarity: 'rare', chance: 28 },
+                { rarity: 'epic', chance: 14 },
+                { rarity: 'legendary', chance: 9 },
+                { rarity: 'unique', chance: 5 },
+            ];
 
-            const weightedClasses = [];
-            allClasses.forEach(classData => {
-                const weight = rarityWeights[classData.rarity] || 0;
-                for (let i = 0; i < weight; i++) {
-                    weightedClasses.push(classData);
-                }
-            });
+            const byRarity = allClasses.reduce((acc, c) => {
+                (acc[c.rarity] ||= []).push(c);
+                return acc;
+            }, {});
 
-            if (weightedClasses.length < numberOfCards) {
-                console.warn("Não há classes ponderadas suficientes para selecionar 10 cartas. Selecionando todas as classes ponderadas disponíveis.");
-                for (let i = weightedClasses.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [weightedClasses[i], weightedClasses[j]] = [weightedClasses[j], weightedClasses[i]];
-                }
-                return weightedClasses.slice(0, weightedClasses.length);
+            // Cópia (sem repetição) para manter variedade nas cartas
+            const availableByRarity = Object.fromEntries(
+                Object.entries(byRarity).map(([rarity, list]) => [rarity, [...list]])
+            );
+
+            const totalChance = rarityChances.reduce((sum, r) => sum + r.chance, 0);
+            if (totalChance !== 100) {
+                console.warn(`A soma das chances de raridade não é 100 (atual: ${totalChance}).`);
             }
 
-            const selectedClasses = [];
+            function rollRarity() {
+                const roll = Math.random() * totalChance;
+                let cumulative = 0;
+                for (const r of rarityChances) {
+                    cumulative += r.chance;
+                    if (roll < cumulative) return r.rarity;
+                }
+                return rarityChances[rarityChances.length - 1].rarity;
+            }
+
+            function pickAndRemoveRandom(list) {
+                if (!list || list.length === 0) return null;
+                const idx = Math.floor(Math.random() * list.length);
+                return list.splice(idx, 1)[0];
+            }
+
+            const selected = [];
             for (let i = 0; i < numberOfCards; i++) {
-                const randomIndex = Math.floor(Math.random() * weightedClasses.length);
-                selectedClasses.push(weightedClasses[randomIndex]);
+                const rarity = rollRarity();
+                let picked = pickAndRemoveRandom(availableByRarity[rarity]);
+
+                // Fallback: se esgotou aquela raridade, pega de qualquer raridade ainda disponível
+                if (!picked) {
+                    const remainingPools = Object.values(availableByRarity).filter(list => list.length > 0);
+                    const flat = remainingPools.flat();
+                    if (flat.length === 0) break;
+
+                    const fallbackRarity = flat[Math.floor(Math.random() * flat.length)].rarity;
+                    picked = pickAndRemoveRandom(availableByRarity[fallbackRarity]);
+                }
+
+                if (picked) selected.push(picked);
             }
 
-            return selectedClasses;
+            return selected;
         }
 
         function initializeCards() {
